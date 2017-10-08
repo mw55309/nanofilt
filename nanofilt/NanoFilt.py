@@ -26,7 +26,7 @@ from Bio import SeqIO
 from argparse import ArgumentParser
 import sys
 from nanomath import aveQual
-from nanoget import processSummary
+from nanoget import process_summary
 from nanofilt.version import __version__
 
 
@@ -88,7 +88,7 @@ def filter_using_summary(fq, args):
     Use the summary file from albacore for more accurate quality estimate
     Get the dataframe from nanoget, convert to dictionary
     '''
-    data = {entry[0]: entry[1] for entry in processSummary(args.summary, args.readtype)[
+    data = {entry[0]: entry[1] for entry in process_summary(args.summary, args.readtype)[
         ["readIDs", "quals"]].itertuples(index=False)}
     try:
         for record in SeqIO.parse(fq, "fastq"):
